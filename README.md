@@ -1,6 +1,13 @@
 # Skills with PlaywrightCLI
 
-Skills practical for automatizing Web workflow, cooperating with Playwright cli. The list is still growing...
+Skills practical for automatizing Web workflow, cooperating with Playwright cli.  
+The list is still growing...
+
+## Pre
+* Make sure you hava install Playwright cli and its skill.  
+---
+## Skills
+* [academic](#Academic)
 
 ### Academic
 

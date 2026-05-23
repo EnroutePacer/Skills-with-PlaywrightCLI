@@ -3,6 +3,7 @@ async page => {
   var movie = 'MOVIE_NAME';
   var ctx = page.context();
   var sites = [
+    { name:'izhuobao',       url:'https://www.izhuobao.com/'},
     { name:'fanqieyingyuan', url:'https://www.fanqieyingyuan.com/' },
     { name:'zxtqd',          url:'https://zxtqd.com/' },
     { name:'hz-c',           url:'https://www.hz-c.com/' },

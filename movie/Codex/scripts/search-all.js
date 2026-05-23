@@ -2,7 +2,11 @@
 async page => {
   var movie = 'MOVIE_NAME';
   var ctx = page.context();
+
+  // ******* 在此处扩展优先搜索网站 ******
+
   var sites = [
+    { name:'izhuobao',       url:'https://www.izhuobao.com/'},
     { name:'fanqieyingyuan', url:'https://www.fanqieyingyuan.com/' },
     { name:'zxtqd',          url:'https://zxtqd.com/' },
     { name:'hz-c',           url:'https://www.hz-c.com/' },
@@ -17,6 +21,7 @@ async page => {
     { name:'yuny',           url:'https://www.yuny.live/' },
     { name:'pptsearch',      url:'https://www.pptsearch365.com/' }
   ];
+  
   var results = [];
   var failures = [];
 

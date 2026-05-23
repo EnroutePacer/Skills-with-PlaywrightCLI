@@ -4,6 +4,7 @@
 根据用户输入的电影名称，先确认准确片名与基础信息，再跨站检索可播放资源，输出按准确度与画质排序的结果链接。
 
 ## 首选检索网站（第一优先级）
+- https://www.izhuobao.com/
 - https://www.fanqieyingyuan.com/
 - https://zxtqd.com/
 - https://www.hz-c.com/
@@ -75,7 +76,7 @@ $SKDIR = "$env:USERPROFILE\.claude\skills\movie\scripts"
 不要单独跑 `run-code` 不加 `grep` 过滤，否则 ~280 行脚本源码会灌入对话。不要重新跑 `run-code` 取完整 JSON，`--summary` 已包含全部所需信息。
 
 **关键行为**：
-- 遍历 13 站点，每站开新 tab；`baichatv/hz-c/byptc` 首次直接访问搜索 URL，其余站首次访问首页。随后执行 Cloudflare/WAF 检测，再按站点策略搜索（搜索框填充或直连 URL）→ 等 3s → 检测页面是否含电影名
+- 遍历所有首选站点，每站开新 tab；`baichatv/hz-c/byptc` 首次直接访问搜索 URL，其余站首次访问首页。随后执行 Cloudflare/WAF 检测，再按站点策略搜索（搜索框填充或直连 URL）→ 等 3s → 检测页面是否含电影名
 - 提交方式：baichatv/hz-c/byptc 使用直接 URL 搜索（首次导航即直连搜索 URL，减少首页 CF 拦截影响）；yupteam 点击 Submit 按钮（Enter 会丢失关键词）；其余站按 Enter
 - 链接提取：匹配 `/y/`、`/q/`、`/vod/`、`/play/`、`/vodplay/`、`/voddetail/`、`/dianying/`、`/detail/`、`/md/`、`/mp/`、`/xigua/` 等模式，排除 `vodsearch`/`vodtype`/`vodclass`/`javascript` 等噪声，去重（最多 20 条）
 - 短剧过滤：link text 含"短剧"或"全\d+集"的自动舍弃

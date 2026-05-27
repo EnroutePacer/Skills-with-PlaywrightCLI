@@ -216,6 +216,7 @@ function processData(raw) {
         detail: r._hasDetailLink,
         quality: bestQuality,
         url: bestUrl,
+        searchUrl: r.resultUrl || '',
         urls: candidates.map(function(c) { return c.href; }),
         links: (r.links || []).length
       };

@@ -1,3 +1,7 @@
+---
+name: movie
+description: 影视资源检索，根据用户输入的影视名称进行资源检索
+---
 # 影视资源检索 Skill (Codex)
 
 ## 目标
@@ -102,7 +106,7 @@ Get-Content "$SKDIR\results.json" -Raw | node "$SKDIR\filter-results.js" --summa
 - **有效性标记**：`_useful`（是否有播放/详情链接）、`_hasPlayLink`、`_hasDetailLink`
 - **排序**：有效结果排在前
 
-**`--summary` 模式输出字段**：`site`、`useful`、`play`、`detail`、`quality`、`url`、`urls`、`links` 数、`mirrors`、`_verifyUrls`、`_verifyCmd`、`_verifyUrlsFilePath`、`_verifyCmdRecommended`、`_targetYear`。约省 70% 输出量。  
+**`--summary` 模式输出字段**：`site`、`useful`、`play`、`detail`、`quality`、`url`、`searchUrl`、`urls`、`links` 数、`mirrors`、`_verifyUrls`、`_verifyCmd`、`_verifyUrlsFilePath`、`_verifyCmdRecommended`、`_targetYear`。约省 70% 输出量。  
 其中 `links` 为页面原始匹配链接总数（含无关影片/导航，不可作为有效资源数）；以 `urls`/`url` 数组长度为有效资源数依据。  
 `urls` 为按相关度排序的候选链接（最多 3 条），用于避免”正确结果不在 DOM 第一个时被漏验”。
 `_verifyCmdRecommended` 为唯一推荐验证命令参数：当参数长度超过 800 时会自动切换为 `-UrlsFile` 方案。
@@ -259,6 +263,7 @@ Remove-Item "$SKDIR\_verify_urls.txt" -Force -ErrorAction SilentlyContinue
 3. **所有站点资源情况表**（Markdown 表格）
    - 表头：`站点 | 是否命中 | 资源数 | 最佳画质 | 最佳链接 | 失败原因/备注`
    - 每个检索站点都要出现（包括未命中或加载失败）
+   - 每个能连接上、执行了搜索操作、并得到结果的的网站，都要返回`最佳链接`(疑似误匹配的则返回搜索列表的 url)
    - 加载失败站点写明原因
 
 4. 结尾追加：`可切换代理或 IP 后重试失败站点`
